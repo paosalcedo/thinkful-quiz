@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+.answer-img {
+    width: 300px;
+}
+
+ul {
+    list-style: none;
+}
+
+label {
+    display: none;
+}
+
+footer {
+    text-align: center;
+}
+
+.player-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* for larger screens */
+@media screen and (min-width: 640px){
+    .answer-list-flex-container {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+} 
+
+
