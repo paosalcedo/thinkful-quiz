@@ -22,15 +22,33 @@ footer {
     text-align: center;
 }
 
+button {
+    height: 300px;
+    width: 300px; 
+    background: url("https://picsum.photos/300/?random");
+}
+
+.answer-img {
+    display: none;
+}
+
 .player-stats {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
+.answer-ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
 /* for larger screens */
 @media screen and (min-width: 640px){
-    .answer-list-flex-container {
+    .answer-ul {
         flex-direction: row;
         justify-content: flex-end;
     }
