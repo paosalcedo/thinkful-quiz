@@ -11,28 +11,28 @@
         <h1>A Games 101 Quiz</h1>
     </header> -->
     <div class="container">
+        <h1 class="headline">John Carmack and John Romero designed which game?</h1>
         <form class="quiz-form" action="/some-server-endpoint" method ="post">
-            <h1>John Carmack and John Romero designed which game?</h1>
             <div class="div-ul-container">
                 <ul class="answer-ul">
                     <li>
-                        <label for="multiple-choice-selection">Myst</label>
                         <button type="button" class="answer-button option-a">
+                            <p class="option-text">Myst</p>
                         </button>
                     </li>
                     <li>
-                        <label for="multiple-choice-selection">Diablo</label>
                         <button type="button" class="answer-button option-b">
+                                <p class="option-text">Myst</p>
                         </button>
                     </li>
                     <li class="answer-list-item">                
-                        <label for="multiple-choice-selection">Doom</label>
                         <button type="button" class="answer-button option-c">
+                                <p class="option-text">Myst</p>
                         </button>
                     </li>
                     <li>
-                        <label for="multiple-choice-selection">Ultima</label>
                         <button type="button" class="answer-button option-d">
+                                <p class="option-text">Myst</p>
                         </button>
                     </li>
                 </ul>
@@ -40,12 +40,12 @@
         </form>
         <footer>
             <div class="player-stats">
-                <p>Score: 7/10</p>
-                <p>Question: 9/10</p>
+                <p class="current-score">SCORE: 0/8</p>
+                <p class="current-q">QUESTION: 1/8</p>
             </div>
         </footer>
     </div>
-    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
