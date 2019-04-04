@@ -78,7 +78,7 @@ const QUIZ = [
 let quizIndex = 0; 
 
 function renderQuestion(){
-    //get question from QUIZ    
+    //get question from QUIZ        
     $('.headline').text(QUIZ[quizIndex].question);
     const buttons = $('ul').find('.answer-button');
     console.log(buttons.length);
@@ -101,22 +101,28 @@ function renderBetweenQuestionScreen(isPlayerCorrect, correctAnswer){
     if(isPlayerCorrect){
         // render the screen for correct answer
         $('.between-headline').html(`RIGHT! The answer is ${correctAnswer}!`);
-        incrementScore();
+        updateScore();
         if(quizIndex<QUIZ.length-1){ 
-            incrementQuestionCount();
             quizIndex++;            
-            renderQuestion();
         }
     } else {
         //render the screen for wrong answer
         $('.between-headline').html(`WRONG! the answer is ${correctAnswer}!`);
         if(quizIndex<QUIZ.length-1){ 
-            incrementQuestionCount();
             quizIndex++;            
-            renderQuestion();
         }
     }
     // console.log('renderQuesiton() ran!');
+}
+
+function handleNextButtonClick(){
+    $('.between-questions').on('click', '.between-button', event => {
+        $('form').toggleClass('hidden');
+        $('.between-questions').toggleClass('hidden');
+        $('.headline').toggleClass('hidden');
+        updateCurrentQuestion();
+        renderQuestion();
+    });
 }
 
 function handleOptionClick(){
@@ -127,14 +133,15 @@ function handleOptionClick(){
     });
 }
 
-function incrementScore(){
+function updateScore(){
         $('.current-score').html(`SCORE: ${quizIndex + 1}/${QUIZ.length}`);
 }
 
-function incrementQuestionCount(){
-    $('.current-q').html(`QUESTION: ${quizIndex + 2}/${QUIZ.length}`);       
+function updateCurrentQuestion(){
+    $('.current-q').html(`QUESTION: ${quizIndex + 1}/${QUIZ.length}`);      
+    console.log('incrementQuestion ran'); 
 }
-
 
 $(renderQuestion());
 $(handleOptionClick());
+$(handleNextButtonClick());
