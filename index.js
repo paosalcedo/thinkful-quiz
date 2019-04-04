@@ -78,35 +78,45 @@ const QUIZ = [
 let quizIndex = 0; 
 
 function renderQuestion(){
-    // const questionString = $('.h1-question').text();
     //get question from QUIZ    
-    // $('.h1-question').text(QUIZ[0].question);
     $('.headline').text(QUIZ[quizIndex].question);
-    const buttons = $('ul').find('button');
-    console.log('there are ' + buttons.length + 'buttons!');    
+    const buttons = $('ul').find('.answer-button');
+    console.log(buttons.length);
     for(let i = 0; i<buttons.length; i++){
         $(buttons[i]).text(`${QUIZ[quizIndex].options[i]}`);
         $(buttons[i]).css('background', `url(${QUIZ[quizIndex].images[i]}`);
-        console.log('renderQuestion ran!');
+        // console.log('renderQuestion ran!');
     }
 }
 
 function checkPlayerAnswer(playerAns){
-    //check player's answer against QUIZ
-    if(QUIZ[quizIndex].options[QUIZ[quizIndex].answer] === playerAns){ //if answer is correct
-        // console.log(`you're right the answer is ${QUIZ[quizIndex].options[QUIZ[quizIndex].answer]}`);
-        updateScore();
+    renderBetweenQuestionScreen(QUIZ[quizIndex].options[QUIZ[quizIndex].answer] === playerAns, QUIZ[quizIndex].options[QUIZ[quizIndex].answer]);
+}
+
+function renderBetweenQuestionScreen(isPlayerCorrect, correctAnswer){
+    $('form').toggleClass('hidden');
+    $('.between-questions').toggleClass('hidden');
+    $('.between-button').html('NEXT');
+
+    if(isPlayerCorrect){
+        // render the screen for correct answer
+        $('.between-headline').html(`RIGHT! The answer is ${correctAnswer}!`);
+        incrementScore();
         if(quizIndex<QUIZ.length-1){ 
-            updateQuestionCount();
+            incrementQuestionCount();
             quizIndex++;            
             renderQuestion();
         }
-    } else { //if answer is wrong
+    } else {
+        //render the screen for wrong answer
+        $('.between-headline').html(`WRONG! the answer is ${correctAnswer}!`);
+        if(quizIndex<QUIZ.length-1){ 
+            incrementQuestionCount();
+            quizIndex++;            
+            renderQuestion();
+        }
     }
-}
-
-function renderBetweenQuestionScreen(){
-
+    // console.log('renderQuesiton() ran!');
 }
 
 function handleOptionClick(){
@@ -117,11 +127,11 @@ function handleOptionClick(){
     });
 }
 
-function updateScore(){
+function incrementScore(){
         $('.current-score').html(`SCORE: ${quizIndex + 1}/${QUIZ.length}`);
 }
 
-function updateQuestionCount(){
+function incrementQuestionCount(){
     $('.current-q').html(`QUESTION: ${quizIndex + 2}/${QUIZ.length}`);       
 }
 
